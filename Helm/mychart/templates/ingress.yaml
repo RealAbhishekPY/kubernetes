@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1 # Specifies the API version for the Ingress
+kind: Ingress # Defines the type of Kubernetes resource (Ingress)
+metadata: # Metadata about the Ingress
+  name: my-ingress # Name of the Ingress
+spec: # Specification of the desired state of the Ingress
+  rules: # List of rules for routing traffic
+  - host: my-app.example.com # Hostname for the Ingress rule
+    http: # HTTP-specific configuration
+      paths: # List of paths to match
+      - path: / # Path to match
+        pathType: Prefix # Type of path matching (Prefix)
+        backend: # Backend service to forward traffic to
+          service: # Service backend configuration
+            name: my-service # Name of the Service to forward traffic to
+            port: # Port configuration for the Service
+              number: 80 # Port number of the Service
