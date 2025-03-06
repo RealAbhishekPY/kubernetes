@@ -1,0 +1,19 @@
+apiVersion: v1 # Specifies the API version
+kind: Pod # Defines the type of Kubernetes resource (Pod)
+metadata: # Metadata about the Pod
+  name: my-pod # Name of the Pod
+spec: # Specification of the desired state of the Pod
+  containers: # List of containers in the Pod
+  - name: web-container # Name of the container
+    image: nginx:latest # Container image to use
+    ports: # List of ports to expose from the container
+    - containerPort: 80 # Port number to expose
+    env: # Environment variables for the container
+    - name: ENV_VAR # Name of the environment variable
+      value: "production" # Value of the environment variable
+    volumeMounts: # List of volumes to mount into the container's filesystem
+    - mountPath: /usr/share/nginx/html # Path within the container where the volume should be mounted
+      name: html-volume # Name of the volume to mount
+  volumes: # List of volumes that can be mounted by containers
+  - name: html-volume # Name of the volume
+    emptyDir: {} # Volume type (emptyDir creates an empty directory for the Pod)
