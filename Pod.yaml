@@ -1,3 +1,4 @@
+#a Pod is the smallest and simplest unit in the Kubernetes object model that you can create or deploy. 
 apiVersion: v1 # Specifies the API version
 kind: Pod # Defines the type of Kubernetes resource (Pod)
 metadata: # Metadata about the Pod
