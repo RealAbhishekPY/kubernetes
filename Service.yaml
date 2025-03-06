@@ -1,0 +1,12 @@
+apiVersion: v1 # Specifies the API version for the Service
+kind: Service # Defines the type of Kubernetes resource (Service)
+metadata: # Metadata about the Service
+  name: my-service # Name of the Service
+spec: # Specification of the desired state of the Service
+  selector: # Selector to identify the Pods targeted by this Service
+    app: my-app # Label key-value pair to match
+  ports: # List of ports that the Service will expose
+  - protocol: TCP # Protocol used by the Service (TCP)
+    port: 80 # Port number exposed by the Service
+    targetPort: 8080 # Port number on the Pod that the Service will forward traffic to
+  type: ClusterIP # Type of Service (ClusterIP is the default, exposing the Service on an internal IP)
