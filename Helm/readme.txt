@@ -1,78 +1,15 @@
 Helm is a package manager for Kubernetes that allows you to define, install, and upgrade even the most complex Kubernetes applications. A Helm chart is a collection of files that describe a related set of Kubernetes resources.
 
-Here's a simple example of a Helm chart structure and its contents:
-
-### Directory Structure:
-```
-mychart/
-  Chart.yaml
-  values.yaml
-  templates/
-    deployment.yaml
-    service.yaml
-```
-
-### `Chart.yaml`:
-```yaml
-apiVersion: v2
-name: mychart
-description: A Helm chart for Kubernetes
-version: 0.1.0
-appVersion: "1.0"
-```
-
-### `values.yaml`:
-```yaml
-replicaCount: 2
-
-image:
-  repository: nginx
-  tag: "latest"
-  pullPolicy: IfNotPresent
-
-service:
-  type: ClusterIP
-  port: 80
-
-resources: {}
-```
-
-### `templates/deployment.yaml`:
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Release.Name }}-deployment
-spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Release.Name }}
-    spec:
-      containers:
-      - name: {{ .Release.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        ports:
-        - containerPort: 80
-```
-
-### `templates/service.yaml`:
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-service
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-  - port: {{ .Values.service.port }}
-  selector:
-    app: {{ .Release.Name }}
-```
+mychart
+|-- Chart.yaml
+|-- charts
+|-- templates
+|   |-- NOTES.txt
+|   |-- _helpers.tpl
+|   |-- deployment.yaml
+|   |-- ingress.yaml
+|   `-- service.yaml
+`-- values.yaml
 
 ### Explanation:
 - **Chart.yaml**: Contains metadata about the chart, such as its name, version, and description.
